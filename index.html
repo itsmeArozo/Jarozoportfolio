@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Joshua Arozo — IT Analyst | Enterprise AI Automations & Systems Consultant</title>
+<meta name="description" content="Portfolio of Joshua Arozo — IT Analyst, Enterprise AI Automations Lead and internal technology consultant specializing in Copilot Studio agents, Power Automate pipelines, and Microsoft 365 administration." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0f172a;
+    --bg-deep:#0b1120;
+    --surface:rgba(30,41,59,.55);
+    --surface-solid:#1e293b;
+    --border:rgba(148,163,184,.14);
+    --border-hover:rgba(59,130,246,.55);
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --dim:#64748b;
+    --blue:#3b82f6;
+    --gold:#d4af37;
+    --gold-light:#f0d58a;
+    --blue-light:#93c5fd;
+    --grad:linear-gradient(135deg,#2563eb 0%,#60a5fa 100%);
+    --grad-gold:linear-gradient(135deg,#f6e3a1 0%,#d4af37 55%,#b8912b 100%);
+    --radius:18px;
+    --shadow:0 20px 50px -20px rgba(0,0,0,.6);
+    --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --nav-h:68px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px)}
+  body{
+    font-family:var(--font);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  ::selection{background:rgba(212,175,55,.35)}
+
+  /* ---------- Background ambience ---------- */
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .bg-fx::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+  }
+  .orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35}
+  .orb.o1{width:520px;height:520px;background:#3b82f6;top:-180px;left:-120px}
+  .orb.o2{width:460px;height:460px;background:#d4af37;top:120px;right:-160px;opacity:.12}
+  .orb.o3{width:420px;height:420px;background:#3b82f6;bottom:-200px;left:30%;opacity:.15}
+
+  .container{width:min(1180px,92%);margin-inline:auto}
+  section{padding:110px 0}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;
+    display:flex;align-items:center;transition:background .3s,border-color .3s,backdrop-filter .3s;
+    border-bottom:1px solid transparent;
+  }
+  .nav.scrolled{background:rgba(15,23,42,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--border)}
+  .nav .container{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+  .logo-mark{
+    width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;
+    font-size:.9rem;color:#fff;border:1px solid rgba(240,213,138,.55);box-shadow:0 6px 20px -6px rgba(59,130,246,.7)
+  }
+  .nav-links{display:flex;gap:4px;list-style:none}
+  .nav-links a{
+    padding:8px 14px;border-radius:10px;font-size:.9rem;font-weight:500;color:var(--muted);transition:color .2s,background .2s
+  }
+  .nav-links a:hover{color:var(--text);background:rgba(148,163,184,.08)}
+  .nav-links a.active{color:#fff;background:rgba(59,130,246,.16)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:10px;width:42px;height:42px;color:var(--text);cursor:pointer}
+  .nav-toggle span{display:block;width:18px;height:2px;background:currentColor;margin:4px auto;border-radius:2px;transition:transform .3s,opacity .3s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:.95rem;
+    border:1px solid var(--border);transition:transform .2s,box-shadow .25s,border-color .25s,background .25s;cursor:pointer
+  }
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 30px -10px rgba(59,130,246,.8)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(212,175,55,.7)}
+  .btn-ghost{background:rgba(30,41,59,.5);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{border-color:var(--border-hover);transform:translateY(-2px);background:rgba(59,130,246,.1)}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:calc(var(--nav-h) + 40px)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+  .status-pill{
+    display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 10px;border-radius:999px;
+    background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);color:#f0d58a;font-size:.82rem;font-weight:500;margin-bottom:26px
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:#e5c158;box-shadow:0 0 0 0 rgba(229,193,88,.7);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,193,88,.6)}70%{box-shadow:0 0 0 10px rgba(229,193,88,0)}100%{box-shadow:0 0 0 0 rgba(229,193,88,0)}}
+  .hero h1{font-size:clamp(2.8rem,6.4vw,5rem);font-weight:800;letter-spacing:-.045em;line-height:1.02;margin-bottom:18px}
+  .grad-text{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .role{font-family:var(--mono);font-size:clamp(.85rem,1.4vw,1rem);color:var(--gold);margin-bottom:24px;letter-spacing:.01em}
+  .hero .role .sep{color:var(--dim);margin:0 6px}
+  .loc{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;color:var(--muted);margin:-10px 0 22px}
+  .loc svg{width:16px;height:16px;color:var(--gold)}
+  .role-card .meta{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);margin-bottom:14px}
+  .role-card .meta svg{width:14px;height:14px;color:var(--gold)}
+  .edu{margin-top:18px;padding:22px 24px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(30,41,59,.5));border:1px solid rgba(212,175,55,.35)}
+  .edu .when{font-family:var(--mono);font-size:.72rem;color:var(--gold-light);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+  .edu h4{font-size:1.05rem;margin-bottom:2px}
+  .edu p{color:var(--muted);font-size:.88rem}
+  .honor{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;font-weight:600;color:#1a1405;background:var(--grad-gold);padding:5px 12px;border-radius:999px}
+  .hero p.pitch{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--muted);max-width:620px;margin-bottom:36px}
+  .hero p.pitch strong{color:var(--text);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+  .hero-card{
+    position:relative;padding:28px;border-radius:24px;background:var(--surface);border:1px solid var(--border);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow)
+  }
+  .hero-card::before{
+    content:"";position:absolute;inset:-1px;border-radius:24px;padding:1px;background:var(--grad-gold);opacity:.5;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none
+  }
+  .term-head{display:flex;gap:7px;margin-bottom:20px}
+  .term-head i{width:11px;height:11px;border-radius:50%;background:#334155}
+  .term-head i:nth-child(1){background:#f87171}.term-head i:nth-child(2){background:#fbbf24}.term-head i:nth-child(3){background:#34d399}
+  .term-line{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:6px}
+  .term-line .k{color:#60a5fa}.term-line .s{color:#f0d58a}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .stat{padding:16px;border-radius:14px;background:rgba(15,23,42,.6);border:1px solid var(--border)}
+  .stat b{display:block;font-size:1.7rem;font-weight:800;letter-spacing:-.03em;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat span{font-size:.78rem;color:var(--muted)}
+
+
+  /* Hero console */
+  .hero-grid>*{min-width:0}
+  @media (max-width:680px){.hero-card{padding:20px}.term-line{font-size:.74rem;word-break:break-word}}
+  .hero{flex-direction:column;justify-content:center}
+  .console-bar{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+  .console-bar .term-head{margin:0}
+  .console-title{font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+  .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;color:var(--gold-light);padding:4px 10px;border-radius:999px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3)}
+  .live .dot{width:7px;height:7px}
+  .flow{display:flex;align-items:center;margin:24px 0 22px;padding:18px 16px;border-radius:16px;background:rgba(15,23,42,.6);border:1px solid var(--border)}
+  .node{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
+  .node span{font-size:.72rem;color:var(--muted);font-weight:500}
+  .node-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:var(--blue-light);background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)}
+  .node-ic svg{width:21px;height:21px}
+  .node.core .node-ic{width:54px;height:54px;color:#1a1405;background:var(--grad-gold);border:none;box-shadow:0 0 0 6px rgba(212,175,55,.1),0 10px 30px -8px rgba(212,175,55,.6);animation:breathe 3s ease-in-out infinite}
+  .node.core span{color:var(--gold-light)}
+  @keyframes breathe{50%{box-shadow:0 0 0 10px rgba(212,175,55,.05),0 10px 34px -6px rgba(212,175,55,.75)}}
+  .wire{flex:1;height:2px;margin:0 8px 22px;background:rgba(148,163,184,.18);position:relative;overflow:hidden;border-radius:2px}
+  .wire i{position:absolute;top:0;left:-30%;width:30%;height:100%;background:linear-gradient(90deg,transparent,#60a5fa,transparent);animation:flowline 1.8s linear infinite}
+  .wire:last-of-type i{animation-delay:.9s;background:linear-gradient(90deg,transparent,#f0d58a,transparent)}
+  @keyframes flowline{to{left:100%}}
+  .feed-head{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+  .feed{list-style:none;display:grid;gap:8px}
+  .feed li{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:rgba(15,23,42,.5);border:1px solid var(--border);font-size:.84rem;transition:opacity .4s,transform .4s}
+  .feed li.swap{opacity:0;transform:translateY(6px)}
+  .feed .ok{width:22px;height:22px;flex-shrink:0;border-radius:7px;display:grid;place-items:center;background:rgba(212,175,55,.14);color:var(--gold-light)}
+  .feed .ok svg{width:13px;height:13px}
+  .feed .msg{color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .feed .tm{font-family:var(--mono);font-size:.7rem;color:var(--dim);flex-shrink:0}
+  .stack-strip{display:flex;align-items:center;gap:22px;margin-top:64px;padding-top:28px;border-top:1px solid var(--border)}
+  .strip-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+  .marquee{flex:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .track{display:flex;gap:12px;width:max-content;animation:marquee 38s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  .track span{font-size:.85rem;font-weight:500;color:var(--muted);padding:8px 16px;border-radius:999px;border:1px solid var(--border);background:rgba(30,41,59,.45);white-space:nowrap}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  @media (max-width:680px){.stack-strip{flex-direction:column;align-items:flex-start;gap:14px;margin-top:44px}.marquee{width:100%}.flow{padding:14px 10px}.node-ic{width:40px;height:40px}.node.core .node-ic{width:46px;height:46px}}
+
+  /* ---------- Section heads ---------- */
+  .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--grad-gold);border-radius:2px}
+  .section-title{font-size:clamp(2rem,4vw,2.9rem);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
+  .section-sub{color:var(--muted);max-width:680px;font-size:1.05rem}
+  .section-head{margin-bottom:56px}
+
+  /* ---------- Cards ---------- */
+  .card{
+    position:relative;padding:30px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;overflow:hidden
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(59,130,246,.14),transparent 45%)
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 24px 50px -24px rgba(59,130,246,.45)}
+  .card:hover::after{opacity:1}
+  .icon{
+    width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;
+    background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(212,175,55,.12));border:1px solid rgba(59,130,246,.3);color:#93c5fd
+  }
+  .icon svg{width:24px;height:24px}
+
+  /* Pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .pillar h3{font-size:1.28rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+  .pillar p{color:var(--muted);font-size:.96rem;margin-bottom:22px}
+  .pillar .num{position:absolute;top:22px;right:26px;font-family:var(--mono);font-size:.8rem;color:var(--dim)}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:.74rem;font-weight:500;padding:5px 10px;border-radius:999px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.22);color:#93c5fd}
+  .tag.cy{background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.25);color:#f0d58a}
+
+  /* Consultancy banner */
+  .consult{
+    margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;padding:28px 32px;border-radius:var(--radius);
+    background:linear-gradient(120deg,rgba(59,130,246,.14),rgba(212,175,55,.07));border:1px solid rgba(59,130,246,.28)
+  }
+  .consult h4{font-size:1.08rem;margin-bottom:6px}
+  .consult p{color:var(--muted);font-size:.94rem}
+  .dept-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .dept{font-family:var(--mono);font-size:.75rem;padding:5px 11px;border-radius:8px;background:rgba(15,23,42,.65);border:1px solid var(--border);color:var(--text)}
+
+  /* Capabilities */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:24px}
+  .cap .icon{margin:0;width:44px;height:44px}
+  .cap .icon svg{width:21px;height:21px}
+  .cap h3{font-size:1.04rem;font-weight:650;margin-bottom:6px}
+  .cap p{color:var(--muted);font-size:.9rem}
+  .cap.wide{grid-column:1/-1}
+
+  /* Projects */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+  .filter{
+    font:inherit;font-size:.88rem;font-weight:500;padding:9px 16px;border-radius:999px;cursor:pointer;
+    background:rgba(30,41,59,.5);border:1px solid var(--border);color:var(--muted);transition:all .2s
+  }
+  .filter:hover{color:var(--text);border-color:rgba(148,163,184,.35)}
+  .filter.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 24px -10px rgba(59,130,246,.8)}
+  .filter .count{opacity:.7;margin-left:6px;font-family:var(--mono);font-size:.76rem}
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .proj{display:flex;flex-direction:column;padding:26px}
+  .proj.hidden{display:none}
+  .proj.featured{grid-column:span 2;background:linear-gradient(140deg,rgba(59,130,246,.16),rgba(30,41,59,.55) 55%)}
+  .proj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .proj-cat{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .proj-id{font-family:var(--mono);font-size:.75rem;color:var(--dim)}
+  .proj h3{font-size:1.1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:10px;line-height:1.3}
+  .proj.featured h3{font-size:1.4rem}
+  .proj p{color:var(--muted);font-size:.9rem;flex:1;margin-bottom:18px}
+  .proj .tags{margin-top:auto}
+  .badge-star{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:#fde68a;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);padding:4px 10px;border-radius:999px}
+  .domains{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+  .domain{font-family:var(--mono);font-size:.78rem;padding:8px 10px;border-radius:8px;background:rgba(15,23,42,.6);border:1px solid var(--border);color:#93c5fd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .domain small{display:block;color:var(--dim);font-family:var(--font);font-size:.7rem}
+
+  /* Prior experience */
+  .prior{background:linear-gradient(180deg,transparent,rgba(11,17,32,.85) 18%,var(--bg-deep));border-top:1px solid var(--border)}
+  .timeline{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+  .role-card{position:sticky;top:calc(var(--nav-h) + 24px);padding:28px}
+  .role-card .when{font-family:var(--mono);font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+  .role-card h3{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+  .role-card .org{color:var(--gold);font-size:.9rem;margin-bottom:16px}
+  .role-card p{color:var(--muted);font-size:.92rem}
+  .prior-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .prior .card{background:rgba(30,41,59,.4)}
+  .prior-item{display:grid;grid-template-columns:auto 1fr;gap:20px}
+  .prior-item .icon{margin:0}
+  .prior-item h4{font-size:1.06rem;font-weight:650;margin-bottom:6px}
+  .prior-item p{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+
+  /* Contact */
+  .contact-wrap{
+    padding:56px;border-radius:28px;text-align:center;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse at top,rgba(59,130,246,.22),transparent 60%),var(--surface);border:1px solid rgba(59,130,246,.3)
+  }
+  .contact-wrap .section-sub{margin:0 auto 40px}
+  .contact-wrap .eyebrow{justify-content:center}
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;text-align:left}
+  .contact-card{display:flex;align-items:center;gap:16px;padding:20px}
+  .contact-card .icon{margin:0;width:46px;height:46px;flex-shrink:0}
+  .contact-card b{display:block;font-size:.98rem}
+  .contact-card span{font-size:.82rem;color:var(--muted);word-break:break-all}
+  .contact-card .arrow{margin-left:auto;color:var(--dim);transition:transform .25s,color .25s}
+  .contact-card:hover .arrow{transform:translate(3px,-3px);color:var(--gold)}
+
+  footer{padding:34px 0;border-top:1px solid var(--border);color:var(--dim);font-size:.85rem}
+  footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .to-top{
+    position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);
+    background:rgba(30,41,59,.8);backdrop-filter:blur(10px);color:var(--text);display:grid;place-items:center;cursor:pointer;
+    opacity:0;transform:translateY(12px);pointer-events:none;transition:all .3s;z-index:40
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto}
+  .to-top:hover{border-color:var(--border-hover);color:var(--gold)}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1024px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-card{max-width:560px}
+    .pillars{grid-template-columns:1fr 1fr}
+    .pillars .pillar:last-child{grid-column:1/-1}
+    .proj-grid{grid-template-columns:1fr 1fr}
+    .timeline{grid-template-columns:1fr}
+    .role-card{position:static}
+  }
+  @media (max-width:820px){
+    .nav-toggle{display:block}
+    .nav-links{
+      position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;padding:14px 4%;gap:2px;
+      background:rgba(15,23,42,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+      transform:translateY(-8px);opacity:0;pointer-events:none;transition:all .25s
+    }
+    .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+    .nav-links a{display:block;padding:12px 14px}
+    .contact-grid{grid-template-columns:1fr}
+    .contact-wrap{padding:40px 22px}
+    .consult{grid-template-columns:1fr}
+  }
+  @media (max-width:680px){
+    section{padding:80px 0}
+    .pillars,.cap-grid,.proj-grid{grid-template-columns:1fr}
+    .proj.featured{grid-column:auto}
+    .domains{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+</style>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#home" class="logo" aria-label="Joshua Arozo — home">
+      <span class="logo-mark">JA</span><span>Joshua Arozo</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#prior">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="status-pill reveal"><span class="dot"></span>IT Analyst · Enterprise AI Automations Lead</div>
+      <h1 class="reveal">Joshua <span class="grad-text">Arozo</span></h1>
+      <div class="role reveal">IT Analyst<span class="sep">|</span>Enterprise AI Automations &amp; Systems Consultant</div>
+      <div class="loc reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Based in Las Piñas City · Working in Alabang, Muntinlupa</div>
+      <p class="pitch reveal">The go-to <strong>internal tech consultant</strong> for cross-departmental leadership. Architecting <strong>custom AI agents</strong>, <strong>automated enterprise pipelines</strong>, and <strong>cost-effective cloud solutions</strong>.</p>
+      <div class="cta-row reveal">
+        <a href="#projects" class="btn btn-primary">Explore Featured Projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#capabilities" class="btn btn-ghost">Core Capabilities</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+    </div>
+
+    <aside class="hero-card reveal" aria-label="Automation console">
+      <div class="console-bar">
+        <div class="term-head"><i></i><i></i><i></i></div>
+        <span class="console-title">automation-console</span>
+        <span class="live"><span class="dot"></span>Live</span>
+      </div>
+      <div class="term-line"><span class="k">const</span> role = <span class="s">"Internal Technology Consultant"</span>;</div>
+      <div class="term-line"><span class="k">const</span> stack = [<span class="s">"Copilot Studio"</span>, <span class="s">"Power Automate"</span>, <span class="s">"M365"</span>];</div>
+
+      <div class="flow" aria-hidden="true">
+        <div class="node"><div class="node-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div><span>Trigger</span></div>
+        <div class="wire"><i></i></div>
+        <div class="node core"><div class="node-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V3M9 13h.01M15 13h.01"/></svg></div><span>AI Agent</span></div>
+        <div class="wire"><i></i></div>
+        <div class="node"><div class="node-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/></svg></div><span>Delivered</span></div>
+      </div>
+
+      <div class="feed-head">Recent activity</div>
+      <ul class="feed" id="feed">
+        <li><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span class="msg"></span><span class="tm"></span></li>
+        <li><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span class="msg"></span><span class="tm"></span></li>
+        <li><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span class="msg"></span><span class="tm"></span></li>
+      </ul>
+    </aside>
+  </div>
+  <div class="container stack-strip reveal" aria-label="Technology stack">
+    <span class="strip-label">Daily toolkit</span>
+    <div class="marquee"><div class="track">
+      <span>Copilot Studio</span><span>Power Automate</span><span>Microsoft Entra ID</span><span>Intune</span><span>Defender for Office 365</span><span>SharePoint</span><span>Microsoft Teams</span><span>OpenAPI Connectors</span><span>GoDaddy DNS</span><span>GLPI</span><span>RingCentral</span><span>Airtable</span><span>Jotform</span>
+    </div></div>
+  </div>
+</section>
+
+<!-- ================= IMPACT PILLARS ================= -->
+<section id="impact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Core Impact &amp; Consulting</div>
+      <h2 class="section-title">Three pillars of <span class="grad-text">enterprise value</span></h2>
+      <p class="section-sub">Leaders across the organization bring their hardest workflow problems directly to me — and leave with purpose-built tools, intelligent agents, and secure cloud infrastructure.</p>
+    </div>
+
+    <div class="pillars">
+      <article class="card pillar reveal">
+        <span class="num">01</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V3M9 3h6M9 13h.01M15 13h.01M2 12v3M22 12v3"/></svg></div>
+        <h3>AI &amp; Enterprise Automations</h3>
+        <p>Building custom Copilot Studio agents, voice-to-voice simulation tools, automated API pipelines, and complex Power Automate workflows that remove manual effort at scale.</p>
+        <div class="tags"><span class="tag">Copilot Studio</span><span class="tag">Power Automate</span><span class="tag cy">Voice AI</span><span class="tag cy">OpenAPI</span></div>
+      </article>
+
+      <article class="card pillar reveal">
+        <span class="num">02</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 5l-3 14"/></svg></div>
+        <h3>Internal Tech Consultancy &amp; App Dev</h3>
+        <p>Cross-departmental workflow architect. Departments come directly to me for custom app builds and to replace expensive SaaS tools — e.g., the AutoConnect pipeline and Attendance Hotline.</p>
+        <div class="tags"><span class="tag">RBAC Apps</span><span class="tag">SaaS Replacement</span><span class="tag cy">Workflow Design</span></div>
+      </article>
+
+      <article class="card pillar reveal">
+        <span class="num">03</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Cloud Administration &amp; Security Compliance</h3>
+        <p>Microsoft 365, Entra ID and Intune management, SOC 2 / ISO 27001 documentation, InfoSec training execution, and Defender phishing simulation drills.</p>
+        <div class="tags"><span class="tag">M365</span><span class="tag">Entra ID</span><span class="tag">Intune</span><span class="tag cy">SOC 2</span><span class="tag cy">ISO 27001</span></div>
+      </article>
+    </div>
+
+    <div class="consult reveal">
+      <div class="icon" style="margin:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.5 3.5 5.2"/></svg></div>
+      <div>
+        <h4>Trusted technical liaison to leadership</h4>
+        <p>Management relies on me to engineer cost-efficient, high-impact internal tools and AI systems — and to communicate project lifecycles and AI adoption strategy directly to decision-makers.</p>
+        <div class="dept-row"><span class="dept">HR</span><span class="dept">WFM</span><span class="dept">Finance</span><span class="dept">Training</span><span class="dept">Talent Acquisition</span><span class="dept">Operations</span><span class="dept">Customer Service</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAPABILITIES ================= -->
+<section id="capabilities">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Core Technical Competencies</div>
+      <h2 class="section-title">Systems administration <span class="grad-text">&amp; capabilities</span></h2>
+      <p class="section-sub">The technical foundation behind every build — from identity and governance to helpdesk operations and security awareness.</p>
+    </div>
+
+    <div class="cap-grid">
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2L20 3M16 7l3 3M14 9l2 2"/></svg></div>
+        <div><h3>Identity &amp; Access Management (Microsoft 365)</h3><p>Enrolling and revoking enterprise user access, configuring Entra ID security policies, managing Intune and Basic Mobility &amp; Security conditional access, and governing application consent frameworks.</p></div>
+      </div>
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+        <div><h3>Power Platform Governance &amp; Capacity</h3><p>Managing and monitoring AI Capacity across the Power Platform ecosystem, engineering custom APIs and OpenAPI connectors, and building scalable cloud workflows.</p></div>
+      </div>
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2a2 2 0 000-4V7z"/><path d="M14 5v12" stroke-dasharray="2 2"/></svg></div>
+        <div><h3>Enterprise Ticketing &amp; Helpdesk</h3><p>Helpdesk administration, ticket lifecycle management, SLA tracking, and multi-department helpdesk deployment on GLPI.</p></div>
+      </div>
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z"/></svg></div>
+        <div><h3>Technical Support &amp; Troubleshooting</h3><p>Workstation deployment, Cisco Meraki network gear, software diagnostics, and telephony troubleshooting across RingCentral, E-MetroTel UCX, Volie and Tekion softphones.</p></div>
+      </div>
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3M12 14v2"/></svg></div>
+        <div><h3>Information Security &amp; SOC Compliance</h3><p>Documenting IT-side ISO and Cyraacs requirements for SOC 2 / ISO 27001 readiness, running the org-wide security training program, and executing silent Defender phishing drills.</p></div>
+      </div>
+      <div class="card cap reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div>
+        <div><h3>Multimedia &amp; Communications</h3><p>Professional video editing and authoring regular internal weekly newsletters for corporate communications.</p></div>
+      </div>
+      <div class="card cap wide reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 8l-4 4 1 5.8L12 15l-5 2.8L8 12 4 8l5.6-.8L12 2z"/></svg></div>
+        <div><h3>Strategic &amp; AI Leadership</h3><p>Trusted by management to engineer cost-efficient, high-impact internal tools, automations, and AI systems; acts as a direct technical liaison communicating with leadership on project lifecycles and AI adoption.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Featured Projects</div>
+      <h2 class="section-title">Enterprise builds <span class="grad-text">in production</span></h2>
+      <p class="section-sub">A selection of systems, agents, and automations designed, built, and deployed across the organization.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Filter projects">
+      <button class="filter active" data-filter="all" role="tab" aria-selected="true">All<span class="count"></span></button>
+      <button class="filter" data-filter="ops" role="tab" aria-selected="false">Enterprise Ops &amp; Architecture<span class="count"></span></button>
+      <button class="filter" data-filter="ai" role="tab" aria-selected="false">AI Agents<span class="count"></span></button>
+      <button class="filter" data-filter="auto" role="tab" aria-selected="false">Process &amp; Integration<span class="count"></span></button>
+      <button class="filter" data-filter="sec" role="tab" aria-selected="false">InfoSec &amp; Compliance<span class="count"></span></button>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+      <!-- Enterprise Ops -->
+      <article class="card proj featured reveal" data-cat="ops">
+        <div class="proj-top"><span class="proj-cat">Enterprise Operations</span><span class="badge-star">★ Flagship</span></div>
+        <h3>AutoConnect Operations Pipeline</h3>
+        <p>A centralized enterprise operations pipeline and master production tracker integrating workflow data across Training, IT, WFM, Talent Acquisition, HR, and Finance. Built with Role-Based Access Control — each department receives unique tabs and functional views tailored to its scope, dynamically syncing equipment inventory, financial budgets, capacity forecasting, and site rollouts.</p>
+        <div class="tags"><span class="tag">RBAC</span><span class="tag">Multi-Department</span><span class="tag cy">Capacity Forecasting</span><span class="tag cy">SaaS Replacement</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ops">
+        <div class="proj-top"><span class="proj-cat">Enterprise Operations</span><span class="proj-id">02</span></div>
+        <h3>Automated Attendance Hotline Portal &amp; Workflow</h3>
+        <p>Attendance tracking pipeline on a custom company subdomain combining a Jotform intake portal with Power Automate, posting real-time alerts into dedicated Teams channels for HR and Operations.</p>
+        <div class="tags"><span class="tag">Jotform</span><span class="tag">Power Automate</span><span class="tag cy">MS Teams</span></div>
+      </article>
+
+      <article class="card proj featured reveal" data-cat="ops">
+        <div class="proj-top"><span class="proj-cat">Infrastructure</span><span class="proj-id">03</span></div>
+        <h3>Domain Portfolio &amp; DNS Management</h3>
+        <p>Owns the company's domain and DNS administration through GoDaddy — provisioning new subdomains, configuring DNS records, and replacing or migrating domains as platforms change. Powers the public-facing entry points for HR, Learning &amp; Development, InfoSec, and Talent Acquisition systems.</p>
+        <div class="domains">
+          <div class="domain"><small>Provisioning</small>Subdomains &amp; DNS records</div>
+          <div class="domain"><small>Lifecycle</small>Domain replacement &amp; migration</div>
+          <div class="domain"><small>Routing</small>A · CNAME · TXT · MX</div>
+          <div class="domain"><small>Platforms</small>LMS · InfoSec · Careers · Intake</div>
+        </div>
+        <div class="tags"><span class="tag">DNS</span><span class="tag">GoDaddy</span><span class="tag cy">Domain Lifecycle</span></div>
+      </article>
+
+      <!-- AI Agents -->
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">AI Agent</span><span class="badge-star">★ Featured</span></div>
+        <h3>CSR AI Simulation Tool</h3>
+        <p>Interactive training portal with 10 executive customer personas, built on Copilot Studio and custom HTML frontends so agents can practice voice-to-voice calls before handling live accounts.</p>
+        <div class="tags"><span class="tag">Copilot Studio</span><span class="tag cy">Voice-to-Voice</span><span class="tag">HTML</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">AI Agent</span><span class="proj-id">05</span></div>
+        <h3>Escalation Automation</h3>
+        <p>Intelligent routing engine using Copilot Studio and Power Automate that categorizes Sales, General, and Parts escalations and routes them to the correct Teams channels.</p>
+        <div class="tags"><span class="tag">Copilot Studio</span><span class="tag">Power Automate</span><span class="tag cy">Routing</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">AI · Training QA</span><span class="proj-id">06</span></div>
+        <h3>Voice &amp; Pronunciation Auditor</h3>
+        <p>Trainees upload call recordings to SharePoint; an AI engine analyzes the audio to return accuracy scores, actionable feedback, and highlighted mispronunciations.</p>
+        <div class="tags"><span class="tag">Speech AI</span><span class="tag">SharePoint</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">AI Agent</span><span class="proj-id">07</span></div>
+        <h3>Automated Parts Quote Lookup Agent</h3>
+        <p>Copilot Studio assistant connected to a SharePoint Excel database, enabling real-time automotive parts quote lookups through natural-language queries.</p>
+        <div class="tags"><span class="tag">Copilot Studio</span><span class="tag cy">Conversational AI</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">AI · Voice</span><span class="proj-id">08</span></div>
+        <h3>Text-to-Speech Call Scripts</h3>
+        <p>Automated pipeline converting text-based customer call simulation scripts into realistic, dynamic voice conversations using advanced TTS engines.</p>
+        <div class="tags"><span class="tag">TTS</span><span class="tag cy">Pipeline</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="ai">
+        <div class="proj-top"><span class="proj-cat">Automation · Privacy</span><span class="proj-id">09</span></div>
+        <h3>Quarterly Private Metrics Dispatcher</h3>
+        <p>Power Automate dispatcher delivering individual KPI metrics privately via Teams direct messages and Outlook emails instead of public group chat postings.</p>
+        <div class="tags"><span class="tag">Power Automate</span><span class="tag">Outlook</span><span class="tag cy">Teams DM</span></div>
+      </article>
+
+      <!-- Process & Integration -->
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Integration</span><span class="proj-id">10</span></div>
+        <h3>RingCentral &amp; Airtable Automated Pipeline</h3>
+        <p>Fetches raw telemetry and call details directly from RingCentral and auto-populates Airtable fields, eliminating manual post-call encoding.</p>
+        <div class="tags"><span class="tag">RingCentral API</span><span class="tag cy">Airtable</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Integration</span><span class="proj-id">11</span></div>
+        <h3>Eniston Knowledge Base OpenAPI Connector</h3>
+        <p>Custom OpenAPI/Swagger connector in Power Automate syncing Eniston KB articles into SharePoint lists and Microsoft Copilot Studio.</p>
+        <div class="tags"><span class="tag">OpenAPI</span><span class="tag">Swagger</span><span class="tag cy">Copilot Studio</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Integration</span><span class="proj-id">12</span></div>
+        <h3>Meta Business &amp; WhatsApp Business API</h3>
+        <p>Configured the WhatsApp Business API via Meta Business Suite under the company portfolio to support automated messaging workflows.</p>
+        <div class="tags"><span class="tag">Meta Business</span><span class="tag cy">WhatsApp API</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Workflow</span><span class="proj-id">13</span></div>
+        <h3>Automated Coaching Workflow</h3>
+        <p>Deals Posting coaching pipeline originating in Microsoft Forms, confirmed through Teams Adaptive Cards, then emailed as structured details to the agent and leadership.</p>
+        <div class="tags"><span class="tag">MS Forms</span><span class="tag cy">Adaptive Cards</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Workflow · Compliance</span><span class="proj-id">14</span></div>
+        <h3>KB Acknowledgement Automation</h3>
+        <p>Automated tracking and compliance confirmation workflow deployed immediately after live development and testing of internal knowledge base articles.</p>
+        <div class="tags"><span class="tag">Power Automate</span><span class="tag cy">Compliance</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Business Continuity</span><span class="proj-id">15</span></div>
+        <h3>BCP Dressdown Automation</h3>
+        <p>Dress-down advisories sent to Managers and Team Leaders when typhoon signals reach Level 3, with an officer-validation gate before notification emails go out.</p>
+        <div class="tags"><span class="tag">BCP</span><span class="tag cy">Approval Gate</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Business Continuity</span><span class="proj-id">16</span></div>
+        <h3>BCP Monitoring &amp; Forecasting</h3>
+        <p>Delivers 3-day severe weather, rally, and strike forecasts every two days to maintain business continuity readiness.</p>
+        <div class="tags"><span class="tag">BCP</span><span class="tag cy">Forecasting</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Bot</span><span class="proj-id">17</span></div>
+        <h3>Daily Weather &amp; Traffic Update</h3>
+        <p>Automated briefing bot posting daily weather and traffic updates within a 5 km radius of Alabang into MS Teams channels.</p>
+        <div class="tags"><span class="tag">MS Teams</span><span class="tag cy">Scheduled Flow</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="auto">
+        <div class="proj-top"><span class="proj-cat">Workflow</span><span class="proj-id">18</span></div>
+        <h3>On-Ramp Task MS Teams Automation</h3>
+        <p>Triggers when a task or item is updated in the On-Ramp onboarding platform, instantly posting progress updates into Teams for real-time visibility.</p>
+        <div class="tags"><span class="tag">On-Ramp</span><span class="tag cy">Webhooks</span></div>
+      </article>
+
+      <!-- InfoSec -->
+      <article class="card proj reveal" data-cat="sec">
+        <div class="proj-top"><span class="proj-cat">InfoSec · Training</span><span class="proj-id">19</span></div>
+        <h3>Essentials of IT Security &amp; Compliance Course</h3>
+        <p>Authored and deployed the organization-wide course and certificate generation system to meet SOC 2 and ISO 27001 readiness standards.</p>
+        <div class="tags"><span class="tag">SOC 2</span><span class="tag">ISO 27001</span><span class="tag cy">LMS</span></div>
+      </article>
+
+      <article class="card proj reveal" data-cat="sec">
+        <div class="proj-top"><span class="proj-cat">InfoSec · Awareness</span><span class="proj-id">20</span></div>
+        <h3>Silent Defender Phishing Simulation Drill</h3>
+        <p>Organization-wide stealth security awareness campaign via Microsoft Defender for Office 365, using region-aware delivery tracking to evaluate employee threat awareness.</p>
+        <div class="tags"><span class="tag">Defender for O365</span><span class="tag cy">Attack Simulation</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIOR EXPERIENCE ================= -->
+<section class="prior" id="prior">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Prior Experience &amp; Technical Foundations</div>
+      <h2 class="section-title">Where the <span class="grad-text">foundation</span> was built</h2>
+      <p class="section-sub">Before stepping into the IT Analyst role, I managed large-scale data systems, full-stack web builds, and technical pipelines.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="card role-card reveal">
+        <div class="when">Previous Role</div>
+        <h3>Technical &amp; Data System Specialist</h3>
+        <div class="org">Course Provider Industry</div>
+        <div class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Alabang, Muntinlupa City</div>
+        <p>Managed large-scale data systems, full-stack web builds, and technical pipelines prior to my current IT Analyst focus.</p>
+        <div class="edu">
+          <div class="when">Education · 2023</div>
+          <h4>STI College Tanauan</h4>
+          <p>Graduated with Latin honors</p>
+          <span class="honor">★ Cum Laude</span>
+        </div>
+      </div>
+
+      <div class="prior-grid">
+        <div class="card prior-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+          <div>
+            <h4>Relational Database &amp; Data Management</h4>
+            <p>Managed large-scale SQL databases, advanced Excel models, sensitive scoring data, and enrollment tracking for thousands of records.</p>
+            <div class="tags"><span class="tag">SQL</span><span class="tag">Advanced Excel</span><span class="tag cy">Data Integrity</span></div>
+          </div>
+        </div>
+        <div class="card prior-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3M15 12h.01M18 13h.01"/></svg></div>
+          <div>
+            <h4>Full-Stack Web &amp; Game Development</h4>
+            <p>Built custom web applications and interactive browser games from scratch using HTML, PHP, JavaScript, and CSS.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag cy">CSS</span></div>
+          </div>
+        </div>
+        <div class="card prior-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <div>
+            <h4>Student Admissions &amp; Pipeline Systems</h4>
+            <p>Streamlined enrollment workflows, course registration intake, and end-user hardware/software troubleshooting.</p>
+            <div class="tags"><span class="tag">Enrollment Workflows</span><span class="tag cy">End-User Support</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="section-title">Have a workflow that <span class="grad-text">should run itself?</span></h2>
+      <p class="section-sub">Whether it's an AI agent, an automation pipeline, or a SaaS tool worth replacing — let's talk. Based in Las Piñas City, Metro Manila.</p>
+      <div class="contact-grid">
+        <a class="card contact-card" href="mailto:joshuaarozo@gmail.com">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><b>Email</b><span>joshuaarozo@gmail.com</span></div>
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="card contact-card" href="tel:+639217271878">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
+          <div><b>Mobile</b><span>0921 727 1878</span></div>
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="card contact-card" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></div>
+          <div><b>LinkedIn</b><span>linkedin.com/in/your-profile</span></div>
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="card contact-card" href="https://github.com/your-username" target="_blank" rel="noopener">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg></div>
+          <div><b>GitHub</b><span>github.com/your-username</span></div>
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> Joshua Arozo. All rights reserved.</span>
+    <span>IT Analyst · Enterprise AI Automations &amp; Systems Consultant</span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(() => {
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  const toTop = document.getElementById('toTop');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll state
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 20);
+    toTop.classList.toggle('show', y > 600);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Active link highlighting
+  const navAnchors = [...links.querySelectorAll('a')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
+
+  // Reveal on scroll
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); reveal.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 70 + 'ms';
+    reveal.observe(el);
+  });
+
+
+  // Hero activity feed
+  const marqueeTrack = document.querySelector('.track');
+  if (marqueeTrack) marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+  const events = [
+    ['Escalation routed → Parts channel','now'],
+    ['KPI metrics sent privately via Teams','2m'],
+    ['BCP advisory passed officer validation','5m'],
+    ['RingCentral call logged to Airtable','8m'],
+    ['Parts quote answered by AI agent','11m'],
+    ['KB acknowledgement recorded','14m'],
+    ['On-Ramp task update posted to Teams','17m'],
+    ['Attendance report alerted HR channel','21m'],
+    ['Weather & traffic briefing published','25m']
+  ];
+  const feedItems = [...document.querySelectorAll('#feed li')];
+  let head = 0;
+  const paint = () => feedItems.forEach((li, k) => {
+    const [m, t] = events[(head + k) % events.length];
+    li.querySelector('.msg').textContent = m; li.querySelector('.tm').textContent = t;
+  });
+  paint();
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => {
+      feedItems.forEach(li => li.classList.add('swap'));
+      setTimeout(() => { head = (head + events.length - 1) % events.length; paint(); feedItems.forEach(li => li.classList.remove('swap')); }, 400);
+    }, 3200);
+  }
+
+  // Count-up stats
+  const counter = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const start = performance.now(), dur = 1200;
+      const tick = t => {
+        const p = Math.min((t - start) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + (p === 1 ? suffix : '');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counter.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => counter.observe(el));
+
+  // Card spotlight follows cursor
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Project filters
+  const projects = [...document.querySelectorAll('.proj')];
+  const filters = [...document.querySelectorAll('.filter')];
+  filters.forEach(btn => {
+    const f = btn.dataset.filter;
+    btn.querySelector('.count').textContent = f === 'all' ? projects.length : projects.filter(p => p.dataset.cat === f).length;
+    btn.addEventListener('click', () => {
+      filters.forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-selected', b === btn); });
+      projects.forEach(p => {
+        const show = f === 'all' || p.dataset.cat === f;
+        p.classList.toggle('hidden', !show);
+        if (show) { p.classList.remove('in'); requestAnimationFrame(() => p.classList.add('in')); }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
