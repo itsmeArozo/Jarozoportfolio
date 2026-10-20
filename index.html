@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0f172a" />
 <title>Joshua Arozo — IT Analyst | Enterprise AI Automations & Systems Consultant</title>
 <meta name="description" content="Portfolio of Joshua Arozo — IT Analyst, Enterprise AI Automations Lead and internal technology consultant specializing in Copilot Studio agents, Power Automate pipelines, and Microsoft 365 administration." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,14 +90,14 @@
     border:1px solid var(--border);transition:transform .2s,box-shadow .25s,border-color .25s,background .25s;cursor:pointer
   }
   .btn svg{width:18px;height:18px}
-  .btn-primary{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 30px -10px rgba(59,130,246,.8)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(212,175,55,.7)}
+  .btn-primary{background:var(--grad-gold);border-color:transparent;color:#1a1405;box-shadow:0 10px 30px -10px rgba(212,175,55,.75)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px rgba(212,175,55,.85);filter:brightness(1.06)}
   .btn-ghost{background:rgba(30,41,59,.5);backdrop-filter:blur(8px)}
   .btn-ghost:hover{border-color:var(--border-hover);transform:translateY(-2px);background:rgba(59,130,246,.1)}
 
   /* ---------- Hero ---------- */
   .hero{min-height:100vh;display:flex;align-items:center;padding-top:calc(var(--nav-h) + 40px)}
-  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .95fr;gap:56px;align-items:center}
   .status-pill{
     display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 10px;border-radius:999px;
     background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);color:#f0d58a;font-size:.82rem;font-weight:500;margin-bottom:26px
@@ -140,6 +141,14 @@
 
 
   /* Hero console */
+  .hero-card .term-line{font-size:.76rem;margin-bottom:4px}
+  .stack-list{list-style:none;display:flex;flex-wrap:wrap;gap:3px 7px;margin:6px 0 6px 4px;padding:2px 0 2px 12px;border-left:1px dashed rgba(212,175,55,.3)}
+  .stack-list li{font-family:var(--mono);font-size:.7rem;letter-spacing:-.015em;color:var(--muted);line-height:1.55;white-space:nowrap}
+  .stack-list .s{color:var(--gold-light)}
+  .hero-card .flow{margin:18px 0 16px;padding:14px 16px}
+  .hero-card .feed li{padding:9px 14px;min-width:0}
+  .feed{grid-template-columns:minmax(0,1fr)}
+
   .hero-grid>*{min-width:0}
   @media (max-width:680px){.hero-card{padding:20px}.term-line{font-size:.74rem;word-break:break-word}}
   .hero{flex-direction:column;justify-content:center}
@@ -334,6 +343,104 @@
     .reveal{opacity:1;transform:none}
   }
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+
+  /* ================= MOBILE EXPERIENCE ================= */
+  .swipe-hint,.pager{display:none}
+  @media (hover:none){
+    .card:hover{transform:none}
+    .card::after{display:none}
+  }
+  @media (max-width:680px){
+    :root{--nav-h:62px}
+    section{padding:64px 0}
+    .section-head{margin-bottom:28px}
+    .section-title{font-size:1.85rem}
+    .section-sub{font-size:.97rem}
+    .eyebrow{font-size:.7rem;letter-spacing:.12em}
+
+    /* hero */
+    .hero{min-height:auto;padding-top:calc(var(--nav-h) + 28px);padding-bottom:40px}
+    .hero-grid{gap:34px}
+    .status-pill{font-size:.74rem;margin-bottom:18px}
+    .hero h1{font-size:2.9rem;margin-bottom:12px}
+    .hero .role{font-size:.8rem;margin-bottom:16px;line-height:1.5}
+    .loc{font-size:.82rem;margin:-4px 0 18px;align-items:flex-start}
+    .loc svg{margin-top:2px;flex-shrink:0}
+    .hero p.pitch{font-size:1.02rem;margin-bottom:26px}
+    .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .cta-row .btn{justify-content:center;padding:14px 12px;font-size:.9rem}
+    .cta-row .btn-primary{grid-column:1/-1}
+    .hero-card{padding:18px;border-radius:20px}
+    .console-bar{margin-bottom:14px;padding-bottom:12px}
+    .hero-card .term-line{font-size:.7rem}
+    .stack-list li{font-size:.66rem}
+    .hero-card .flow{margin:14px 0 14px;padding:12px 10px}
+    .hero-card .feed li{font-size:.8rem;padding:9px 12px}
+    .stack-strip{margin-top:36px;padding-top:22px}
+
+    /* swipe carousels */
+    .snap{display:flex!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+          margin-inline:-4.35%;padding:4px 4.35% 6px;scroll-padding-inline:4.35%;scrollbar-width:none;align-items:flex-start}
+    .snap::-webkit-scrollbar{display:none}
+    .snap>*{flex:0 0 86%;scroll-snap-align:start;grid-column:auto!important}
+    .snap>.hidden{display:none}
+    .swipe-hint{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--dim);margin:-14px 0 14px}
+    .swipe-hint svg{width:14px;height:14px;color:var(--gold);animation:nudge 1.6s ease-in-out infinite}
+    @keyframes nudge{50%{transform:translateX(4px)}}
+    .pager{display:flex;justify-content:center;gap:6px;margin-top:16px}
+    .pager i{width:6px;height:6px;border-radius:99px;background:rgba(148,163,184,.3);transition:all .3s}
+    .pager i.on{width:20px;background:var(--gold)}
+    .pager .count{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+    .pager .count b{color:var(--gold-light);font-weight:600}
+    .pillar{padding:24px}
+    .pillar p{font-size:.92rem}
+    .proj{padding:22px}
+    .proj.featured h3{font-size:1.2rem}
+    .domains{grid-template-columns:1fr 1fr;gap:6px}
+    .domain{font-size:.68rem;padding:7px 8px;white-space:normal}
+
+    /* filter chips: single scrolling row */
+    .filters{flex-wrap:nowrap;overflow-x:auto;margin-inline:-4.35%;padding:2px 4.35% 6px;scrollbar-width:none;margin-bottom:22px}
+    .filters::-webkit-scrollbar{display:none}
+    .filter{white-space:nowrap;flex-shrink:0;font-size:.82rem;padding:8px 14px}
+
+    /* consult */
+    .consult{padding:22px;gap:14px}
+    .dept{font-size:.7rem;padding:4px 9px}
+
+    /* capabilities accordion */
+    .cap-grid{gap:10px}
+    .cap{padding:16px 18px;gap:14px;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .cap h3{margin:0;font-size:.97rem;padding-right:28px;position:relative}
+    .cap h3::after{content:"";position:absolute;right:0;top:50%;width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(45deg);transition:transform .3s}
+    .cap.open h3::after{transform:translateY(-30%) rotate(-135deg)}
+    .cap p{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s,margin .3s}
+    .cap.open p{max-height:260px;opacity:1;margin-top:8px}
+    .cap .icon{width:40px;height:40px;align-self:start}
+    .cap.open{border-color:rgba(212,175,55,.35)}
+
+    /* prior */
+    .role-card{padding:22px}
+    .prior-item{grid-template-columns:1fr;gap:12px;padding:22px}
+    .prior-item .icon{width:42px;height:42px}
+
+    /* contact */
+    .contact-wrap{padding:34px 18px;border-radius:22px}
+    .contact-wrap .section-sub{margin-bottom:26px}
+    .contact-grid{gap:10px}
+    .contact-card{padding:14px 16px;gap:14px}
+    .contact-card .icon{width:42px;height:42px}
+    .contact-card>div:nth-child(2){min-width:0}
+    .contact-card span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;word-break:normal}
+
+    footer .container{flex-direction:column;align-items:center;text-align:center;gap:6px}
+    .to-top{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:42px;height:42px}
+    .nav-links a{font-size:1rem}
+  }
+  @media (max-width:360px){
+    .hero h1{font-size:2.45rem}
+    .cta-row{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -386,7 +493,18 @@
         <span class="live"><span class="dot"></span>Live</span>
       </div>
       <div class="term-line"><span class="k">const</span> role = <span class="s">"Internal Technology Consultant"</span>;</div>
-      <div class="term-line"><span class="k">const</span> stack = [<span class="s">"Copilot Studio"</span>, <span class="s">"Power Automate"</span>, <span class="s">"M365"</span>];</div>
+      <div class="term-line"><span class="k">const</span> stack = [</div>
+      <ol class="stack-list">
+        <li><span class="s">"Microsoft Power Automate"</span>,</li>
+        <li><span class="s">"Microsoft Copilot Studio"</span>,</li>
+        <li><span class="s">"Microsoft 365 Enterprise Admin"</span>,</li>
+        <li><span class="s">"Zapier"</span>,</li>
+        <li><span class="s">"Webhooks"</span>,</li>
+        <li><span class="s">"Custom OpenAPI &amp; REST API Connectors"</span>,</li>
+        <li><span class="s">"Application Workflows"</span>,</li>
+        <li><span class="s">"Hardware &amp; Software Troubleshooting"</span></li>
+      </ol>
+      <div class="term-line">];</div>
 
       <div class="flow" aria-hidden="true">
         <div class="node"><div class="node-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div><span>Trigger</span></div>
@@ -421,7 +539,8 @@
       <p class="section-sub">Leaders across the organization bring their hardest workflow problems directly to me — and leave with purpose-built tools, intelligent agents, and secure cloud infrastructure.</p>
     </div>
 
-    <div class="pillars">
+    <div class="swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>Swipe to explore</div>
+    <div class="pillars snap" data-pager>
       <article class="card pillar reveal">
         <span class="num">01</span>
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V3M9 3h6M9 13h.01M15 13h.01M2 12v3M22 12v3"/></svg></div>
@@ -452,7 +571,7 @@
       <div>
         <h4>Trusted technical liaison to leadership</h4>
         <p>Management relies on me to engineer cost-efficient, high-impact internal tools and AI systems — and to communicate project lifecycles and AI adoption strategy directly to decision-makers.</p>
-        <div class="dept-row"><span class="dept">HR</span><span class="dept">WFM</span><span class="dept">Finance</span><span class="dept">Training</span><span class="dept">Talent Acquisition</span><span class="dept">Operations</span><span class="dept">Customer Service</span></div>
+        <div class="dept-row"><span class="dept">HR</span><span class="dept">WFM</span><span class="dept">Finance</span><span class="dept">Training</span><span class="dept">Talent Acquisition</span><span class="dept">Service</span><span class="dept">Sales</span><span class="dept">Accounting</span></div>
       </div>
     </div>
   </div>
@@ -517,7 +636,8 @@
       <button class="filter" data-filter="sec" role="tab" aria-selected="false">InfoSec &amp; Compliance<span class="count"></span></button>
     </div>
 
-    <div class="proj-grid" id="projGrid">
+    <div class="swipe-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>Swipe to explore</div>
+    <div class="proj-grid snap" id="projGrid" data-pager>
       <!-- Enterprise Ops -->
       <article class="card proj featured reveal" data-cat="ops">
         <div class="proj-top"><span class="proj-cat">Enterprise Operations</span><span class="badge-star">★ Flagship</span></div>
@@ -745,12 +865,12 @@
         </a>
         <a class="card contact-card" href="https://ph.linkedin.com/in/joshua-arozo-5b7b44266" target="_blank" rel="noopener">
           <div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></div>
-          <div><b>LinkedIn</b><span>https://ph.linkedin.com/in/joshua-arozo-5b7b44266</span></div>
+          <div><b>LinkedIn</b><span>linkedin.com/in/joshua-arozo</span></div>
           <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </a>
-        <a class="card contact-card" href="https://itsmearozo.github.io/Jarozoportfolio" target="_blank" rel="noopener">
+        <a class="card contact-card" href="https://itsmearozo.github.io/Jarozoportfolio/" target="_blank" rel="noopener">
           <div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg></div>
-          <div><b>GitHub</b><span>https://itsmearozo.github.io/Jarozoportfolio/</span></div>
+          <div><b>GitHub</b><span>itsmearozo.github.io</span></div>
           <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </a>
       </div>
@@ -872,6 +992,48 @@
     });
   });
 
+
+  // ---------- Mobile: swipe pagers ----------
+  const mobile = window.matchMedia('(max-width:680px)');
+  document.querySelectorAll('[data-pager]').forEach(track => {
+    const pager = document.createElement('div'); pager.className = 'pager';
+    track.after(pager);
+    const visible = () => [...track.children].filter(c => !c.classList.contains('hidden'));
+    const build = () => {
+      const items = visible();
+      pager.innerHTML = items.length < 2 ? '' : items.length > 7
+        ? '<span class="count"><b>1</b> / ' + items.length + '</span>'
+        : items.map(() => '<i></i>').join('');
+      sync();
+    };
+    const sync = () => {
+      const items = visible(); if (!items.length) return;
+      const step = items[0].offsetWidth + 14;
+      const idx = Math.min(items.length - 1, Math.round(track.scrollLeft / step));
+      const c = pager.querySelector('.count b');
+      if (c) c.textContent = idx + 1;
+      else [...pager.children].forEach((d, k) => d.classList.toggle('on', k === idx));
+    };
+    track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    track._rebuild = () => { track.scrollLeft = 0; build(); };
+    build();
+  });
+
+  // ---------- Mobile: capabilities accordion ----------
+  const caps = [...document.querySelectorAll('.cap')];
+  caps.forEach((cap, k) => {
+    cap.setAttribute('role', 'button'); cap.setAttribute('tabindex', '0');
+    const toggle = () => {
+      if (!mobile.matches) return;
+      const open = !cap.classList.contains('open');
+      caps.forEach(c => { c.classList.remove('open'); c.setAttribute('aria-expanded', 'false'); });
+      if (open) { cap.classList.add('open'); cap.setAttribute('aria-expanded', 'true'); }
+    };
+    cap.addEventListener('click', toggle);
+    cap.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    if (k === 0) { cap.classList.add('open'); cap.setAttribute('aria-expanded', 'true'); }
+  });
+
   // Project filters
   const projects = [...document.querySelectorAll('.proj')];
   const filters = [...document.querySelectorAll('.filter')];
@@ -885,6 +1047,7 @@
         p.classList.toggle('hidden', !show);
         if (show) { p.classList.remove('in'); requestAnimationFrame(() => p.classList.add('in')); }
       });
+      const grid = document.getElementById('projGrid'); if (grid._rebuild) grid._rebuild();
     });
   });
 })();
